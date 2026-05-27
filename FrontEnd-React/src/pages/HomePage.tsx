@@ -1,5 +1,117 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import camelImage from "../img/camel.jpg";
+import React from "react";
+import { useState } from "react";
+
+
+
+
+  const menuItems = [
+    {
+      title: "About Us",
+      submenu: ["Vision", "Mission", "History", "Leadership"],
+    },
+    {
+      title: "Research",
+      submenu: ["Projects", "Research Areas", "Innovation"],
+    },
+    {
+      title: "Divisions & Sections",
+      submenu: ["IT Division", "AI Section", "Research Labs"],
+    },
+    {
+      title: "Publications",
+      submenu: ["Annual Reports", "Research Papers", "Journals"],
+    },
+    {
+      title: "News & Events",
+      submenu: ["Latest News", "Events", "Gallery"],
+    },
+    {
+      title: "Academics & Training",
+      submenu: ["Courses", "Training", "Workshops"],
+    },
+    {
+      title: "Recruitment",
+      submenu: ["Current Openings", "Apply Online", "Results"],
+    },
+    {
+      title: "Tenders",
+      submenu: ["Open Tenders", "Closed Tenders"],
+    },
+    {
+      title: "RTI",
+      submenu: ["RTI Act", "RTI Officers", "Downloads"],
+    },
+    {
+      title: "Downloads",
+      submenu: ["PDF Files", "Forms", "Documents"],
+    },
+    {
+      title: "Facilities",
+      submenu: ["Library", "Laboratories", "Infrastructure"],
+    },
+    {
+      title: "Contact Us",
+      submenu: ["Phone", "Email", "Location"],
+    },
+  ];
+
+ 
+
+
+import {
+  FaFacebook,
+  FaInstagram,
+  FaWhatsapp,
+  FaYoutube,
+  FaLinkedin,
+  FaGithub,
+}from "react-icons/fa";
+const socialLinks = [
+    {
+      name: "Facebook",
+      icon: <FaFacebook />,
+      link: "https://facebook.com",
+      color: "bg-blue-600",
+    },
+    {
+      name: "Instagram",
+      icon: <FaInstagram />,
+      link: "https://instagram.com",
+      color: "bg-pink-500",
+    },
+    {
+      name: "WhatsApp",
+      icon: <FaWhatsapp />,
+      link: "https://whatsapp.com",
+      color: "bg-green-500",
+    },
+    {
+      name: "YouTube",
+      icon: <FaYoutube />,
+      link: "https://youtube.com",
+      color: "bg-red-600",
+    },
+    {
+      name: "LinkedIn",
+      icon: <FaLinkedin />,
+      link: "https://linkedin.com",
+      color: "bg-blue-800",
+    },
+    {
+      name: "GitHub",
+      icon: <FaGithub />,
+      link: "https://github.com",
+      color: "bg-gray-900",
+    },
+  ];
+  
+
+
+  
+
 
 const news = [
   { date: "12 May 2026", title: "Institute publishes 2025–26 Annual Report", href: "/publications/institutional-publications/annual-reports" },
@@ -14,6 +126,7 @@ const announcements = [
   { tag: "Result", title: "Shortlisted Candidates — Technical Assistant", href: "/recruitment/results-and-notices/shortlisted-candidates" },
   { tag: "RTI", title: "Q1 2026 Disclosure Documents now available", href: "/rti/rti-documents/disclosure-documents" },
 ];
+
 
 const research = [
   {
@@ -55,56 +168,78 @@ export default function HomePage() {
         "Welcome to the National Research Institute. Explore research, publications, tenders, recruitment notifications and more.",
       );
     }
-  }, []);
+  }, [ ]);
 
+   
+    
+  
   return (
     <>
       {/* Hero / Home Banner */}
-      <section
-        aria-label="Home banner"
-        className="relative overflow-hidden border-b border-border bg-primary text-primary-foreground"
-      >
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-14 md:grid-cols-[1.4fr_1fr] md:py-20">
-          <div>
-            <p className="inline-block rounded bg-saffron px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-saffron-foreground">
-              Government of India
-            </p>
-            <h1 className="mt-4 text-3xl font-bold leading-tight md:text-4xl">Advancing science. Serving the nation.</h1>
-            <p className="mt-4 max-w-2xl text-base text-primary-foreground/85 md:text-lg">
-              The National Research Centre on Camel is a premier ICAR institute dedicated to research, education and extension in
-              arid-zone animal sciences — committed to farmer welfare, scientific excellence and transparent governance.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link
-                to="/about-us/institute-profile/overview"
-                className="rounded bg-saffron px-4 py-2 text-sm font-semibold text-saffron-foreground hover:opacity-90"
-              >
-                About the Institute
-              </Link>
-              <Link
-                to="/research"
-                className="rounded border border-primary-foreground/40 bg-transparent px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary-foreground/10"
-              >
-                Explore Research
-              </Link>
-            </div>
-          </div>
-          <div className="hidden md:block">
-            <div
-              aria-hidden="true"
-              className="grid h-full place-items-center rounded border border-primary-foreground/15 bg-primary-foreground/5 p-6"
-            >
-              <div className="text-center">
-                <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border-4 border-saffron bg-primary text-3xl font-bold">
-                  NI
-                </div>
-                <p className="mt-4 text-sm font-semibold uppercase tracking-widest text-saffron">Est. 1984</p>
-                <p className="mt-1 text-sm text-primary-foreground/80">National Research Centre on Camel </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
+   <section
+  aria-label="Home banner"
+  className="relative h-screen overflow-hidden"
+>
+  {/* Background Image */}
+  <div className="absolute inset-0">
+    
+    <img
+      src="./img/camel.jpg"
+      alt="Camel"
+      className="h-full w-full object-cover"
+    />
+
+    
+
+    {/* Dark Overlay */}
+    <div className="absolute inset-0 bg-black/60"></div>
+  </div>
+
+  {/* Content */}
+  <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-6 py-16 md:grid-cols-[1.4fr_1fr] md:py-24">
+
+    {/* Left Side */}
+    <div className="flex flex-col justify-center">
+     
+      <h1 className="mt-5 text-4xl font-extrabold leading-tight text-white md:text-6xl">
+        Advancing Science. <br />
+        Serving the Nation.
+      </h1>
+
+      <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-200">
+        The National Research Centre on Camel is a premier ICAR institute
+        dedicated to research, education and extension in arid-zone animal
+        sciences.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+        <div className="fixed left-1 top-1/2 z-50 flex -translate-y-1/2 flex-col gap-1">
+
+      {socialLinks.map((social, index) => (
+        <a
+          key={index}
+          href={social.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${social.color} flex h-7 w-7 items-center justify-center rounded-sm text-[10px] text-white shadow-md transition hover:scale-105`}
+        >
+
+          {/* Very Small Icon */}
+          {social.icon}
+
+        </a>
+      ))}
+    </div>
+
+
+
+
+
+ 
 
       {/* Quick Links */}
       <section aria-labelledby="quick-links-h" className="border-b border-border bg-surface">

@@ -1,4 +1,4 @@
-import { footerLinks, navigation } from "./navigation";
+import { footerLinks, navigation } from "../lib/navigation";
 
 /** All primary URLs derived from navigation (same logic as legacy /sitemap.xml route). */
 export function collectSitePaths(): string[] {

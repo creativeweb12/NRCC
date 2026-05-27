@@ -7,7 +7,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-import { buildSitemapXml } from "./src/lib/sitemap";
+import { buildSitemapXml } from "./src/pages/sitemap";
 
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
@@ -36,6 +36,7 @@ export default defineConfig({
       },
     },
   ],
+  base: "/",
   build: {
     outDir: "dist",
     emptyOutDir: true,

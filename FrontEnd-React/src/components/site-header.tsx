@@ -20,7 +20,7 @@ export function SiteHeader() {
       {/* Top utility bar — GIGW required: govt branding, accessibility tools */}
       <div className="bg-primary text-primary-foreground text-xs">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-4 py-1.5">
-          <p className="font-medium">Government of India · National Research Centre on Camel</p>
+          <p className="font-medium">ICAR - National Research Centre on Camel</p>
           <nav aria-label="Accessibility tools" className="flex items-center gap-1">
             <button
               type="button"
@@ -69,9 +69,9 @@ export function SiteHeader() {
         <Link to="/" className="flex items-center gap-3" aria-label="Institute home">
           <div
             aria-hidden="true"
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-primary font-bold text-primary-foreground"
+            className="flex h-12 w-12 items-center justify-center rounded-full font-bold text-primary-foreground"
           >
-            NI
+            <img src="../img/icarlogo.png"></img>
           </div>
           <div>
             <p className="text-base font-bold leading-tight text-foreground">National Research Centre on Camel</p>

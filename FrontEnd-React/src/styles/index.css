@@ -155,3 +155,36 @@
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   }
 }
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  position: relative;
+}
+
+.menu-item > a {
+  display: block;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  background: #003366;
+}
+
+.menu-item:hover > a {
+  background: #005599;
+}
+
+.menu-item ul {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  min-width: 220px;
+}
+
+.menu-item:hover > ul {
+  display: block;
+}
