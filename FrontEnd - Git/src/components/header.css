@@ -1,0 +1,191 @@
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  background: #003366;
+  position: relative;
+  z-index: 1000;
+}
+
+/* =========================
+   MAIN NAV
+========================= */
+
+.main-nav {
+  width: 100%;
+}
+
+/* =========================
+   ALL MENU LISTS
+========================= */
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   TOP MENU ONLY
+========================= */
+
+.main-nav > .menu-list {
+  display: flex;
+  align-items: center;
+}
+
+/* =========================
+   MENU ITEM
+========================= */
+
+.menu-item {
+  position: relative;
+}
+
+/* =========================
+   MENU LINKS
+========================= */
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 22px;
+
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+
+  transition: background 0.3s ease;
+}
+
+.menu-link:hover {
+  background: #005599;
+}
+
+/* =========================
+   DOWN ARROW
+========================= */
+
+.menu-item.has-children > .menu-link::after {
+  content: "▼";
+  font-size: 10px;
+  margin-left: 8px;
+}
+
+/* =========================
+   SUBMENU
+========================= */
+
+.submenu {
+  position: absolute;
+
+  top: 100%;
+  left: 0;
+
+  display: none;
+
+  min-width: 260px;
+
+  background: #ffffff;
+
+  border-top: 3px solid #005599;
+
+  box-shadow:
+    0 8px 18px rgba(0,0,0,0.15);
+
+  z-index: 999;
+}
+
+/* SHOW SUBMENU */
+
+.menu-item:hover > .submenu {
+  display: block;
+}
+
+/* =========================
+   SUBMENU LIST
+========================= */
+
+.submenu .menu-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   SUBMENU LINKS
+========================= */
+
+.submenu .menu-link {
+  color: #222;
+  background: white;
+
+  padding: 14px 18px;
+
+  width: 100%;
+
+  font-weight: 500;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.submenu .menu-link:hover {
+  background: #f5f5f5;
+  color: #003366;
+}
+
+/* =========================
+   REMOVE LAST BORDER
+========================= */
+
+.submenu .menu-item:last-child
+  > .menu-link {
+  border-bottom: none;
+}
+
+/* =========================
+   NESTED SUBMENU
+========================= */
+
+.submenu .menu-item {
+  position: relative;
+}
+
+.submenu .submenu {
+  top: 0;
+  left: 100%;
+}
+
+/* =========================
+   RIGHT ARROW
+========================= */
+
+.submenu
+  .menu-item.has-children
+  > .menu-link::after {
+  content: "▶";
+  font-size: 10px;
+}
+
+/* =========================
+   DROPDOWN ANIMATION
+========================= */
+
+.submenu {
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

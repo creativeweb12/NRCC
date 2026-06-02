@@ -1,0 +1,243 @@
+
+/*
+-----------------------------------
+Sidebar Container
+-----------------------------------
+*/
+
+.sidebar {
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 8px;
+
+  padding: 20px;
+}
+
+/*
+-----------------------------------
+Sidebar Title
+-----------------------------------
+*/
+
+.sidebar-title {
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  margin-bottom: 20px;
+
+  color: #002b5c;
+
+  border-bottom: 2px solid #d97706;
+
+  padding-bottom: 10px;
+}
+
+/*
+-----------------------------------
+Menu List
+-----------------------------------
+*/
+
+.sidebar-menu {
+
+  list-style: none;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+/*
+-----------------------------------
+Menu Item
+-----------------------------------
+*/
+
+.sidebar-item {
+
+  margin-bottom: 6px;
+}
+
+/*
+-----------------------------------
+Sidebar Row
+-----------------------------------
+*/
+
+.sidebar-link {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  width: 100%;
+}
+
+/*
+-----------------------------------
+Dropdown Toggle
+-----------------------------------
+*/
+
+.sidebar-toggle {
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  width: 22px;
+
+  min-width: 22px;
+
+  height: 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0;
+
+  margin: 0;
+
+  font-size: 12px;
+
+  color: #002b5c;
+}
+
+/*
+-----------------------------------
+Menu Links
+-----------------------------------
+*/
+
+.sidebar-link a {
+
+  flex: 1;
+
+  display: block;
+
+  text-decoration: none;
+
+  color: #002b5c;
+
+  font-weight: 600;
+
+  padding: 10px 0;
+
+  transition: all 0.2s ease;
+}
+
+/*
+-----------------------------------
+Hover Effect
+-----------------------------------
+*/
+
+.sidebar-link a:hover {
+
+  color: #d97706;
+}
+
+/*
+-----------------------------------
+Active Menu
+-----------------------------------
+*/
+
+.sidebar-item.active
+.sidebar-link a {
+
+  color: #d97706;
+
+  font-weight: 700;
+}
+
+/*
+-----------------------------------
+Submenu
+-----------------------------------
+*/
+
+.sidebar-submenu {
+
+  margin-left: 18px;
+
+  margin-top: 6px;
+
+  padding-left: 14px;
+
+  border-left: 2px solid #e5e7eb;
+}
+
+/*
+-----------------------------------
+Submenu Items
+-----------------------------------
+*/
+
+.sidebar-submenu
+.sidebar-item {
+
+  margin-bottom: 4px;
+}
+
+/*
+-----------------------------------
+Submenu Links
+-----------------------------------
+*/
+
+.sidebar-submenu
+.sidebar-link a {
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  color: #374151;
+}
+
+/*
+-----------------------------------
+Active Submenu
+-----------------------------------
+*/
+
+.sidebar-submenu
+.sidebar-item.active
+.sidebar-link a {
+
+  color: #d97706;
+
+  font-weight: 700;
+}
+
+/*
+-----------------------------------
+Responsive
+-----------------------------------
+*/
+
+@media (max-width: 768px) {
+
+  .sidebar {
+
+    margin-top: 30px;
+  }
+
+  .sidebar-title {
+
+    font-size: 16px;
+  }
+}
