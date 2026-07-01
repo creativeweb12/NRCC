@@ -209,17 +209,45 @@ const currentPath =
   location.pathname.replace(/\/$/, "");
 
 const researchPaths = [
-  "/research",
+  "/research-section",
+   "/research-administration",
   "/research-programs",
   "/institute-projects",
   "/sponsored-projects",
   "/network-projects",
+  "/members",
   "/hrd",
+  "/pme",
+  "/in-charge",
   "/staff",
   "/ipr",
   "/divisions-sections",
   "/publications",
   "/research-sections",
+  "/director",
+  "/scientific-staff",
+  "/administrative-staff",
+  "/technical-staff",
+  "/supporting-staff",
+  "/patents",
+  "/copy-rights",
+  "/trade-marks",
+  "/design",
+  "/camel-health-research",
+  "/biochemistry",
+  "/medicines",
+  "/physiology",
+  "/live-stock-production-mgt",
+  "/grassland",
+  "/agroforestry-units",
+  "/camel-advanced-genomics",
+  "/pathology",
+  "/annual-reports",
+  "/research-publications",
+  "/karabh",
+  "/central-instrumentation-research",
+  
+
 ]; 
 
 

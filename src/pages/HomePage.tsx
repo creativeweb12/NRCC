@@ -1,13 +1,15 @@
-import { useEffect } from "react";
-
 import { Link } from "react-router-dom";
 import camelImage from "../img/camel.jpg";
-import React from "react";
-import { useState } from "react";
+import { getLatestNews } from "@/lib/news";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import { useRef } from "react";
+
+import React, {
+  useEffect,
+  useState,
+  useRef,
+} from "react";
 import {
   FaChevronLeft,
   FaChevronRight,
@@ -177,12 +179,12 @@ const socialLinks = [
   
 
 
-const news = [
-  { date: "12 May 2026", title: "Institute publishes 2025–26 Annual Report", href: "/publications/institutional-publications/annual-reports" },
-  { date: "08 May 2026", title: "International Workshop on Camel Genomics announced", href: "/news-and-events/events/workshops" },
-  { date: "02 May 2026", title: "Recruitment notification for Scientist (Reproduction)", href: "/recruitment/career-opportunities/current-openings" },
-  { date: "28 Apr 2026", title: "MoU signed with State Agricultural University", href: "/news-and-events/news/press-releases" },
-];
+// const news = [
+//   { date: "12 May 2026", title: "Institute publishes 2025–26 Annual Report", href: "/publications/institutional-publications/annual-reports" },
+//   { date: "08 May 2026", title: "International Workshop on Camel Genomics announced", href: "/news-and-events/events/workshops" },
+//   { date: "02 May 2026", title: "Recruitment notification for Scientist (Reproduction)", href: "/recruitment/career-opportunities/current-openings" },
+//   { date: "28 Apr 2026", title: "MoU signed with State Agricultural University", href: "/news-and-events/news/press-releases" },
+// ];
 
 const announcements = [
   { tag: "Tender", title: "Open Tender — Laboratory Equipment (Phase II)", href: "/tenders/active-tenders/open-tenders" },
@@ -223,17 +225,66 @@ const publications = [
 ];
 
 export default function HomePage() {
+  /*
+  ------------------------------------
+  State
+  ------------------------------------
+  */
+  const [news, setNews] = useState<any[]>([]);
+  const [loadingNews, setLoadingNews] = useState(true);
+
+  /*
+  ------------------------------------
+  Load Latest News
+  ------------------------------------
+  */
+  useEffect(() => {
+    async function loadNews() {
+      try {
+        setLoadingNews(true);
+
+        const posts = await getLatestNews(4);
+
+        setNews(posts);
+      } catch (error) {
+        console.error("Error loading latest news:", error);
+      } finally {
+        setLoadingNews(false);
+      }
+    }
+
+    loadNews();
+  }, []);
+
+  /*
+  ------------------------------------
+  Page Initialization
+  ------------------------------------
+  */
   useEffect(() => {
     document.title = "Home — National Research Institute";
-    const metaDesc = document.querySelector('meta[name="description"]');
+
+    const metaDesc = document.querySelector(
+      'meta[name="description"]'
+    );
+
     if (metaDesc) {
       metaDesc.setAttribute(
         "content",
-        "Welcome to the National Research Institute. Explore research, publications, tenders, recruitment notifications and more.",
+        "Welcome to the National Research Institute. Explore research, publications, tenders, recruitment notifications and more."
       );
     }
-     const initSlider = () => {
-    if (!(window as any).$JssorSlider$) return;
+
+    /*
+    ------------------------------------
+    Initialize Jssor Slider
+    ------------------------------------
+    */
+
+    if (!(window as any).$JssorSlider$) {
+      console.warn("Jssor Slider not loaded.");
+      return;
+    }
 
     const transitions = [
       {
@@ -250,7 +301,7 @@ export default function HomePage() {
       },
     ];
 
-    const options = {
+    const slider = new (window as any).$JssorSlider$("jssor_1", {
       $AutoPlay: true,
 
       $SlideshowOptions: {
@@ -273,39 +324,28 @@ export default function HomePage() {
         $Align: 0,
         $NoDrag: true,
       },
-    };
+    });
 
-    const slider = new (window as any).$JssorSlider$(
-      "jssor_1",
-      options
-    );
-
-    function scaleSlider() {
-      const refSize =
-        slider.$Elmt.parentNode.clientWidth;
+    const scaleSlider = () => {
+      const refSize = slider.$Elmt.parentNode.clientWidth;
 
       if (refSize) {
-        slider.$ScaleWidth(
-          Math.min(refSize, 600)
-        );
+        slider.$ScaleWidth(Math.min(refSize, 600));
       }
-    }
+    };
 
     scaleSlider();
 
-    window.addEventListener(
-      "resize",
-      scaleSlider
-    );
+    window.addEventListener("resize", scaleSlider);
+    window.addEventListener("orientationchange", scaleSlider);
 
-    window.addEventListener(
-      "orientationchange",
-      scaleSlider
-    );
-  };
-  
-  //initSlider();
-
+    return () => {
+      window.removeEventListener("resize", scaleSlider);
+      window.removeEventListener(
+        "orientationchange",
+        scaleSlider
+      );
+    };
   }, []);
 
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -332,10 +372,7 @@ export default function HomePage() {
       });
     }
   };
-  
-  useEffect(() => {
-    document.title = "Home";
-  }, []); 
+ 
   
   
 
@@ -595,18 +632,28 @@ const [currentSlide, setCurrentSlide] = useState(0);
               View all →
             </Link>
           </header>
-          <ul className="divide-y divide-border">
-            {news.map((n) => (
-              <li key={n.title}>
-                <Link to={n.href} className="block px-4 py-3 hover:bg-accent">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-saffron">
-                    <time>{n.date}</time>
-                  </p>
-                  <p className="mt-1 text-sm text-card-foreground">{n.title}</p>
-                </Link>
-              </li>
-            ))}
-          </ul>
+         <ul className="news-list">
+  {news.map((item) => (
+    <React.Fragment key={item.id}>
+      <li className="news-item">
+        <Link to={item.href}>
+          <span className="news-date" style={{ color:"Orange"}}> &nbsp; &nbsp;{item.date}</span>
+          <h4> &nbsp; &nbsp;{item.title}</h4>
+        </Link>
+      </li>
+
+      
+        <hr
+  style={{
+    border: "none",
+    borderTop: "0.1px solid lightgrey",
+    margin: "4px 0",
+  }}
+/>
+    
+    </React.Fragment>
+  ))}
+</ul>
         </section>
 
         {/* Announcements */}

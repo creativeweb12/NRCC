@@ -9,11 +9,11 @@ import "./styles/index.css";
 
 import HomePage from "./pages/HomePage";
 import ContentPageRoute from "./pages/ContentPageRoute";
+import LatestNews from "./pages/LatestNews";  
 
 import Header from "./components/Header";
 import { SiteHeader } from "./components/site-header";
 import { SiteFooter } from "./components/site-footer";
-// import { Navbar } from "./components/Navbar";
 
 /*
 -----------------------------------
@@ -22,9 +22,7 @@ Main Layout
 */
 
 function MainLayout() {
-  console.log(
-    "MAIN LAYOUT LOADED"
-  );
+  console.log("MAIN LAYOUT LOADED");
 
   return (
     <>
@@ -33,9 +31,6 @@ function MainLayout() {
 
       {/* Main Header */}
       <Header />
-
-      {/* Responsive Navigation */}
-      {/* <Navbar /> */}
 
       {/* Main Content */}
       <main
@@ -58,18 +53,14 @@ App
 */
 
 export default function App() {
-  console.log(
-    "APP LOADED"
-  );
+  console.log("APP LOADED");
 
   return (
     <BrowserRouter>
       <Routes>
 
         {/* Layout Wrapper */}
-        <Route
-          element={<MainLayout />}
-        >
+        <Route element={<MainLayout />}>
 
           {/* Home Page */}
           <Route
@@ -77,12 +68,16 @@ export default function App() {
             element={<HomePage />}
           />
 
+          {/* Latest News */}
+          <Route
+            path="/latest-news"
+            element={<LatestNews />}
+          />
+
           {/* Dynamic WordPress Pages */}
           <Route
             path="*"
-            element={
-              <ContentPageRoute />
-            }
+            element={<ContentPageRoute />}
           />
 
         </Route>

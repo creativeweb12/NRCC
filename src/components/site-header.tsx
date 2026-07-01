@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import i18n from "@/i18n";
 
 import { cn } from "@/lib/utils";
 import { navigation } from "@/lib/navigation";
@@ -35,12 +36,15 @@ export function SiteHeader() {
   LANGUAGE TOGGLE
   --------------------------------
   */
+   console.log("Imported i18n:", i18n);
+console.log("changeLanguage:", i18n?.changeLanguage);
+console.log("language:", i18n?.language);
 
   const toggleLanguage = () => {
     const newLanguage =
       i18n.language === "en"
-        ? "हिंदी"
-  : "English";
+        ? "hi"
+  : "en";
 
     i18n.changeLanguage(newLanguage);
   };
